@@ -76,18 +76,20 @@ try {
  > Response output
 
  */
-app.post("/SignUp/:name/:phoneNum/:email/:password", function(req, res) {
+app.get("/SignUp/:name/:phoneNum/:email/:pw", function(req, res) {
   mongoose.Promise = global.Promise;
   const name = req.params.name;
   const phoneNum = req.params.phoneNum;
   const email = req.params.email;
-  const password = req.params.password;
+  const pw = req.params.pw;
+
   const newUser = new User({
     name: name,
     phoneNum: phoneNum,
     email: email,
-    password: password
+    password: pw
   });
+  
   newUser.save((err, result) => {
     if (err) console.log(err.message);
     res.send("success");
