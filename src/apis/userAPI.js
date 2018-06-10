@@ -89,7 +89,7 @@ app.get("/SignUp/:name/:phoneNum/:email/:pw", function(req, res) {
     email: email,
     password: pw
   });
-  
+
   newUser.save((err, result) => {
     if (err) console.log(err.message);
     res.send("success");
@@ -125,27 +125,15 @@ app.post("/SignIn/:email/:password", async function(req, res) {
   }
 });
 
-/*
-This method is to get the entire list of the QuestionPages.
-> Request parameter
-  classname : the class that the course is belong to.
-  course : the course you want to get the list.
-> Response output
-  : array of an object(questionPage object).
-*/
-// app.get("/QP_list/:classname/:course", async function(req, res) {
-//   try {
-//     mongoose.Promise = global.Promise;
-//     const course = req.params.course;
-//     const c = await Course.findOne({
-//       "classbelong":req.params.classname,
-//       "name": course
-//     });
-//     res.send(c.questionPages);
-//   } catch (err) {
-//     res.send(err);
-//   }
-// });
+app.get("/getAllGroups", async function(req, res) {
+  try {
+    mongoose.Promise = global.Promise;
+    const g = await Group.find();
+    res.send(g);
+  } catch (err) {
+    res.send(err);
+  }
+});
 
 app.listen(port, function(req, res) {
   console.log("app is listening on " + port);

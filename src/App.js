@@ -17,9 +17,13 @@ import {
 } from "reactstrap";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Home from "./clientPages/Home";
+import AllGroup from "./clientPages/AllGroup";
 import Login from "./clientPages/Login";
 import SignUp from "./clientPages/SignUp";
+import ViewPosts from "./clientPages/ViewPosts";
+import ClubBoard from "./clientPages/ClubBoard";
+import ClubPhotos from "./clientPages/ClubPhotos";
+import ClubBoardWrite from "./clientPages/ClubBoardWrite";
 
 class App extends Component {
   constructor(props) {
@@ -46,7 +50,7 @@ class App extends Component {
             <Col md={2} mdOffset={3} />
           </header>
           <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">AJOU</NavbarBrand>
+            <NavbarBrand href="/">AJOU CLUBS</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
@@ -73,9 +77,17 @@ class App extends Component {
             </Collapse>
           </Navbar>
           <Switch>
-            <Route exact path="/home" component={Home} />
+            <Route exact path="/" component={AllGroup} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/view/:groupname" component={ViewPosts} />
+            <Route exact path="/view/:groupname/board" component={ClubBoard} />
+            <Route exact path="/view/:groupname/writeOnBoard" component={ClubBoardWrite} />
+            <Route
+              exact
+              path="/view/:groupname/:photos"
+              component={ClubPhotos}
+            />
           </Switch>
         </div>
       </Router>
